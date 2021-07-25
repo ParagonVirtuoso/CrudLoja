@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block tituloPagina %}
+Listagem de Calçados
+{% endblock tituloPagina %}
+
+{% block content %}
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Nome</th>
+      <th>Marca</th>
+      <th>Tamanho</th>
+      <th>Cor</th>
+      <th>Ação</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for calcado in lista %}
+    <tr>
+      <td>{{ calcado.nome }}</td>
+      <td>{{ calcado.marca }}</td>
+      <td>{{ calcado.tamanho }}</td>
+      <td>{{ calcado.cor }}</td>
+       <td>
+        <a href="{% url 'editar_calcado' pk=calcado.pk %}">
+          <span class="glyphicon glyphicon-pencil"></span>
+        </a>
+         <a href="{% url 'remover_calcado' pk=calcado.pk %}">
+          <span class="glyphicon glyphicon-trash"></span>
+        </a>
+
+      </td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+<a href="{% url 'novo_calcado'%}">
+<button type="submit" class="btn btn-primary">
+    Cadastrar
+</button>
+</a>
+
+{% endblock content %}
